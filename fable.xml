@@ -1,10 +1,145 @@
 <fable>
-  <config font-family="Schoolbell" />
+  <!-- Exemplo Simples: Sistema de Inventário com Drag & Drop -->
 
-  <property name="pontuacao" default="0" />
-  <property name="visitante" default="Aventureiro" />
+  <property name="pontos" default="0" />
+  <property name="slot1" default="vazio" />
+  <property name="slot2" default="vazio" />
+  <property name="slot3" default="vazio" />
 
-  <start />
-  <middle />
-  <ending />
+  <page id="inventario" bg_color="#2c3e50">
+    <!-- Título do exemplo -->
+    <agent
+      id="titulo"
+      x="400"
+      y="50"
+      text="🎒 Sistema de Inventário - Arraste os itens!"
+      color="#ecf0f1"
+      font-size="20"
+    />
+
+    <!-- Pontuação -->
+    <agent
+      id="pontuacao"
+      x="400"
+      y="100"
+      text="⭐ Pontos: $pontos"
+      color="#f39c12"
+      font-size="16"
+    />
+
+    <!-- ITENS ARRASTÁVEIS -->
+    <!-- Espada -->
+    <agent
+      id="espada"
+      x="100"
+      y="200"
+      image="tech-saw.png"
+      draggable="true"
+      width="60"
+      height="60"
+    />
+
+    <!-- Escudo -->
+    <agent
+      id="escudo"
+      x="200"
+      y="200"
+      image="forest-mushroom.png"
+      draggable="true"
+      width="60"
+      height="60"
+    />
+
+    <!-- Poção -->
+    <agent
+      id="pocao"
+      x="300"
+      y="200"
+      image="tech-acid-1.png"
+      draggable="true"
+      width="60"
+      height="60"
+    />
+
+    <!-- SLOTS DE DESTINO (DROP ZONES) -->
+    <!-- Slot 1 -->
+    <agent
+      id="slot1-area"
+      x="500"
+      y="180"
+      text="Slot 1: $slot1"
+      bg_color="rgba(52,152,219,0.3)"
+      color="#ffffff"
+      font-size="14"
+      border="dashed"
+      border_color="#3498db"
+      width="120"
+      height="80"
+      radius="8"
+      drop_accept="espada,escudo,pocao"
+      on_drop="set(slot1, 'ocupado'); set(pontos, $pontos + 10)"
+    />
+
+    <!-- Slot 2 -->
+    <agent
+      id="slot2-area"
+      x="500"
+      y="280"
+      text="Slot 2: $slot2"
+      bg_color="rgba(46,204,113,0.3)"
+      color="#ffffff"
+      font-size="14"
+      border="dashed"
+      border_color="#2ecc71"
+      width="120"
+      height="80"
+      radius="8"
+      drop_accept="espada,escudo,pocao"
+      on_drop="set(slot2, 'ocupado'); set(pontos, $pontos + 15)"
+    />
+
+    <!-- Slot 3 -->
+    <agent
+      id="slot3-area"
+      x="500"
+      y="380"
+      text="Slot 3: $slot3"
+      bg_color="rgba(231,76,60,0.3)"
+      color="#ffffff"
+      font-size="14"
+      border="dashed"
+      border_color="#e74c3c"
+      width="120"
+      height="80"
+      radius="8"
+      drop_accept="espada,escudo,pocao"
+      on_drop="set(slot3, 'ocupado'); set(pontos, $pontos + 20)"
+    />
+
+    <!-- INSTRUÇÕES -->
+    <agent
+      id="instrucoes"
+      x="400"
+      y="500"
+      text="💡 Arraste os itens da esquerda para os slots da direita"
+      color="#bdc3c7"
+      font-size="14"
+    />
+
+    <!-- Botão Reset -->
+    <agent
+      id="reset-btn"
+      x="400"
+      y="550"
+      text="🔄 Resetar Jogo"
+      bg_color="#95a5a6"
+      color="#ffffff"
+      font-size="14"
+      border="solid"
+      border_color="#7f8c8d"
+      radius="6"
+      animation="hover-bg-color-[#7f8c8d]"
+      on_click="reset()"
+    />
+  </page>
 </fable>
